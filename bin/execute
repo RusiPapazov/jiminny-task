@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+namespace Rusi\Jiminny;
+
+use RuntimeException;
+use Rusi\Jiminny\Analysis\LongestMonologueVisitor;
+use Rusi\Jiminny\Analysis\UserTalkPercentageVisitor;
+use Rusi\Jiminny\DataParser\DataParser;
+use Rusi\Jiminny\DataReader\CachedDataReader;
+use Rusi\Jiminny\DataReader\FileGetContentsDataReader;
+use Symfony\Component\Cache\Adapter\FilesystemAdapter;
+
+require dirname(__DIR__).'/vendor/autoload.php';
+
+$userSource = $argv[1] ?? null;
+$customerSource = $argv[2] ?? null;
+if ($userSource === null || $customerSource === null) {
+    throw new RunTimeException('You must provide remote sources, user first, then customer, e.g. "https://raw.githubusercontent.com/jiminny/join-the-team/master/assets/user-channel.txt"');
+}
+
+
+$app = new App(
+    new DataParser(),
+    new CachedDataReader(
+        new FilesystemAdapter(),
+        new FileGetContentsDataReader(),
+        (int) ($argv[3] ?? null),
+    ),
+    [
+        new LongestMonologueVisitor('user'),
+        new LongestMonologueVisitor('customer'),
+        new UserTalkPercentageVisitor(),
+    ],
+);
+
+$result = $app->execute($userSource, $customerSource);
+
+echo json_encode($result, JSON_THROW_ON_ERROR | JSON_PRETTY_PRINT);
