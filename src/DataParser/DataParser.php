@@ -28,7 +28,7 @@ final class DataParser implements DataParserInterface
 
         // Remove the negative or 0-length speeches.
         return array_values(
-            array_filter($tuples, static fn(array $time) => $time[1] > $time[0]),
+            array_filter($tuples, static fn (array $time) => $time[1] > $time[0]),
         );
     }
 }

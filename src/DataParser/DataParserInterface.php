@@ -1,4 +1,5 @@
 <?php
+
 namespace Rusi\Jiminny\DataParser;
 
 use RuntimeException;

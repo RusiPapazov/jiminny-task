@@ -1,4 +1,5 @@
 <?php
+
 namespace Rusi\Jiminny\Analysis;
 
 use Rusi\Jiminny\Result;
