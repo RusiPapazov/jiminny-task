@@ -13,6 +13,7 @@ final class App
     /** @var iterable<AnalysisVisitorInterface> */
     private iterable $analysisVisitors;
 
+    /** @param iterable<AnalysisVisitorInterface> $analysisVisitors */
     public function __construct(
         DataParserInterface $parser,
         DataReaderInterface $dataReader,

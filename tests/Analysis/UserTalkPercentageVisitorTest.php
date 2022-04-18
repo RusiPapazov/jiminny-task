@@ -13,7 +13,8 @@ final class UserTalkPercentageVisitorTest extends TestCase
 {
     /**
      * @dataProvider dataProvider
-     *
+     * @param float[][] $user
+     * @param float[][] $customer
      */
     public function testAnalyze(float $expected, array $user, array $customer): void
     {
@@ -24,6 +25,7 @@ final class UserTalkPercentageVisitorTest extends TestCase
         self::assertSame($expected, $result->userTalkPercentage);
     }
 
+    /** @return array<int, array<string, mixed>> */
     public function dataProvider(): array
     {
         return [

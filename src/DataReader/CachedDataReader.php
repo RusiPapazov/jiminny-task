@@ -19,7 +19,6 @@ final class CachedDataReader implements DataReaderInterface
         $this->ttl = $ttl;
     }
 
-    /** @throws InvalidArgumentException */
     public function read(string $source): string
     {
         $cacheKey = str_replace(str_split(ItemInterface::RESERVED_CHARACTERS.' '), [], $source);

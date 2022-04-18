@@ -23,6 +23,7 @@ final class DataParserTest extends TestCase
 
     public function testParse(): void
     {
+        /** @var string $data */
         $data = file_get_contents(__DIR__.'/../fixtures/customer-channel');
         $parsed = $this->parser->parse($data);
 
@@ -31,6 +32,7 @@ final class DataParserTest extends TestCase
 
     public function testNegativeSpeeches(): void
     {
+        /** @var string $data */
         $data = file_get_contents(__DIR__.'/../fixtures/negative-spaces');
 
         $parsed = $this->parser->parse($data);

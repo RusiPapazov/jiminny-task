@@ -6,6 +6,6 @@ final class FileGetContentsDataReader implements DataReaderInterface
 {
     public function read(string $source): string
     {
-        return file_get_contents($source);
+        return (string) file_get_contents($source);
     }
 }
